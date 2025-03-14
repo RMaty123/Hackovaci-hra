@@ -23,34 +23,82 @@ def random_data_stream():
 def random_bank_account():
     return ''.join(random.choice('0123456789') for _ in range(16))
 
+def random_bank():
+    banks = ["CitiBank", "Chase", "Wells Fargo", "Bank of America", "Goldman Sachs", "Morgan Stanley"]
+    return random.choice(banks)
+
 def hack_bank_account():
     typing_effect("\n=== BANK ACCOUNT BREACH INITIATED ===", 0.05)
     
     source_account = random_bank_account()
     target_account = random_bank_account()
-    amount = random.randint(10000, 999999)
+    amount = random.randint(1000000, 50000000)
+    source_bank = random_bank()
+    target_bank = random_bank()
     
-    typing_effect(f"\nTarget Account Found: {source_account}", 0.05)
+    typing_effect(f"\nTarget Account Details:", 0.05)
+    typing_effect(f"Bank: {source_bank}", 0.05)
+    typing_effect(f"Account: {source_account}", 0.05)
     typing_effect(f"Available Balance: ${amount:,}", 0.05)
-    typing_effect(f"\nTransfer to Account: {target_account}", 0.05)
+    
+    typing_effect(f"\nDestination Account:", 0.05)
+    typing_effect(f"Bank: {target_bank}", 0.05)
+    typing_effect(f"Account: {target_account}", 0.05)
     
     confirm = input("\nProceed with transfer? (yes/no): ").lower()
     
     if confirm == 'yes':
-        typing_effect("\nInitiating secure transfer protocol...", 0.05)
+        typing_effect("\nINITIATING HIGH-VALUE TRANSFER PROTOCOL", 0.05)
+        typing_effect("ESTABLISHING SECURE CHANNELS...", 0.05)
         
-        for i in range(5):
-            progress = random.randint(1, 100)
-            typing_effect(f"Transfer progress: {progress}%", 0.02)
-            print(f"[{random_hex()}] Encrypting transaction data...")
+        # Initial security bypass
+        for _ in range(3):
+            print(f"[{random_hex()}] Bypassing security layer {random.randint(1,5)}...")
             print(f"[{random_hex()}] Routing through proxy {random_ip()}")
             time.sleep(0.3)
         
-        typing_effect(f"\nSuccessfully transferred ${amount:,}", 0.05)
-        typing_effect("Transaction complete. Covering tracks...", 0.05)
+        typing_effect("\nBEGINNING TRANSACTION SEQUENCE", 0.05)
+        
+        # Split transfer into chunks for more dramatic effect
+        chunks = random.randint(3, 6)
+        chunk_size = amount // chunks
+        remaining = amount
+        
+        for i in range(chunks):
+            current_chunk = chunk_size if i < chunks - 1 else remaining
+            remaining -= current_chunk
+            
+            typing_effect(f"\nTransferring Chunk {i+1}/{chunks}: ${current_chunk:,}", 0.05)
+            print(f"[{random_hex()}] Establishing encrypted tunnel...")
+            print(f"[{random_hex()}] Routing through {random.randint(3,7)} proxy servers...")
+            
+            for j in range(4):
+                progress = random.randint(1, 100)
+                print(f"[{random_hex()}] Transfer progress: {progress}%")
+                print(f"[{random_hex()}] Current proxy: {random_ip()}")
+                print(f"[{random_hex()}] Encryption: AES-{random.choice([128, 256, 512])}")
+                time.sleep(0.2)
+            
+            typing_effect(f"Chunk {i+1} complete: ${current_chunk:,} transferred", 0.05)
+            time.sleep(0.3)
+        
+        # Final confirmation and cleanup
+        typing_effect("\n=== TRANSFER SUMMARY ===", 0.05)
+        typing_effect(f"Total Amount: ${amount:,}", 0.05)
+        typing_effect(f"Source: {source_bank} - ****{source_account[-4:]}", 0.05)
+        typing_effect(f"Destination: {target_bank} - ****{target_account[-4:]}", 0.05)
+        typing_effect("\nCOVERING TRACKS...", 0.05)
+        
+        for _ in range(3):
+            print(f"[{random_hex()}] Erasing transaction logs...")
+            print(f"[{random_hex()}] Removing digital footprint...")
+            time.sleep(0.2)
+        
+        typing_effect("\nTRANSACTION COMPLETE - NO TRACES REMAINING", 0.05)
         time.sleep(1)
     else:
         typing_effect("\nTransfer aborted. Clearing traces...", 0.05)
+        time.sleep(0.5)
 
 def show_menu():
     while True:
